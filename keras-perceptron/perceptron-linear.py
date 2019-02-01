@@ -25,8 +25,8 @@ num_classes = y_train.shape[1]
 # create model
 model = Sequential()
 model.add(Flatten(input_shape=(img_width, img_height)))
-model.add(Dense(num_classes))
-model.compile(loss='mse', optimizer='adam',
+model.add(Dense(num_classes,activation="sigmoid"))
+model.compile(loss='mae', optimizer='adam',
               metrics=['accuracy'])
 
 # Fit the model

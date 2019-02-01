@@ -9,10 +9,10 @@ import json
 from wandb.keras import WandbCallback
 import wandb
 
-run = wandb.init()
+run = wandb.init(allow_val_change=True)
 config = run.config
 config.optimizer = "adam"
-config.epochs = 50
+config.epochs = 10
 config.dropout = 10
 config.hidden_nodes = 100
 
@@ -37,6 +37,8 @@ num_classes = y_train.shape[1]
 # create model
 model = Sequential()
 model.add(Flatten(input_shape=(img_width, img_height)))
+model.add(Dense(config.hidden_nodes, activation='relu'))
+model.add(Dense(config.hidden_nodes, activation='relu'))
 model.add(Dense(config.hidden_nodes, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer=config.optimizer,

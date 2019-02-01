@@ -8,7 +8,7 @@ import json
 from wandb.keras import WandbCallback
 import wandb
 
-run = wandb.init()
+run = wandb.init(allow_val_change=True)
 config = run.config
 config.optimizer = "adam"
 config.epochs = 50
